@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shifty × The Fork — Personal cualificado, cuando lo necesites</title>
+  <meta name="description" content="Shifty es la extensión flexible de tu equipo. Profesionales verificados de hostelería disponibles en menos de 24h. €30 de descuento exclusivo para clientes de The Fork.">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    @font-face { font-family:"Onest"; font-weight:400; font-style:normal; font-display:swap; src:url("fonts/Onest-Regular.ttf") format("truetype"); }
+    @font-face { font-family:"Onest"; font-weight:500; font-style:normal; font-display:swap; src:url("fonts/Onest-Medium.ttf") format("truetype"); }
+    @font-face { font-family:"Onest"; font-weight:600; font-style:normal; font-display:swap; src:url("fonts/Onest-SemiBold.ttf") format("truetype"); }
+    @font-face { font-family:"Onest"; font-weight:700; font-style:normal; font-display:swap; src:url("fonts/Onest-Bold.ttf") format("truetype"); }
+    @font-face { font-family:"Onest"; font-weight:800; font-style:normal; font-display:swap; src:url("fonts/Onest-ExtraBold.ttf") format("truetype"); }
+    @font-face { font-family:"Onest"; font-weight:900; font-style:normal; font-display:swap; src:url("fonts/Onest-Black.ttf") format("truetype"); }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple:        #6C0FD8;
+      --purple-dark:   #5A0CB5;
+      --purple-soft:   #F4ECFC;
+      --purple-soft-2: #EDE9FA;
+      --green:         #10B981;
+      --green-bg:      #ECFDF5;
+      --fg:            #111118;
+      --fg-secondary:  #71717A;
+      --fg-muted:      #A1A1AA;
+      --fg-body:       #374151;
+      --bg:            #FFFFFF;
+      --bg-alt:        #F9F9FB;
+      --surface:       #F4F4F5;
+      --border:        #E4E4E7;
+      --border-soft:   #F0F0F2;
+      --destructive:   #EF4444;
+      --shadow-md:     0 2px 4px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+      --shadow-cta:    0 2px 12px rgba(108,15,216,.25);
+      --shadow-cta-h:  0 6px 28px rgba(108,15,216,.38);
+      --r-card:        22px;
+      --r-pill:        9999px;
+      --r-input:       10px;
+      --r-hero:        32px;
+    }
+
+    html, body {
+      font-family: "Onest", system-ui, -apple-system, sans-serif;
+      background: var(--bg-alt);
+      color: var(--fg);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* ── Page shell ─────────────────────────────────── */
+    .page {
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+    }
+    @media (min-width: 520px) {
+      .page { border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+    }
+
+    /* ── Hero ───────────────────────────────────────── */
+    .hero {
+      background: var(--purple);
+      padding: 36px 24px 60px;
+      border-radius: 0 0 var(--r-hero) var(--r-hero);
+    }
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .logo { display: block; width: 80px; flex-shrink: 0; }
+    .logo-sep {
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: rgba(255,255,255,.35);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .partner-badge {
+      background: #fff;
+      border-radius: 10px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+    }
+    .partner-logo { height: 28px; width: auto; display: block; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+      margin-bottom: 14px;
+    }
+    .eyebrow::before {
+      content: "";
+      display: block;
+      width: 3px; height: 16px;
+      background: rgba(255,255,255,.35);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 9vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -.032em;
+      line-height: 1.07;
+      color: #fff;
+      text-wrap: balance;
+      margin-bottom: 16px;
+    }
+    .hero-sub {
+      font-size: .95rem;
+      font-weight: 500;
+      line-height: 1.6;
+      color: rgba(255,255,255,.72);
+      margin-bottom: 12px;
+    }
+    .hero-sub-2 {
+      font-size: .83rem;
+      font-weight: 500;
+      line-height: 1.6;
+      color: rgba(255,255,255,.5);
+    }
+
+    /* ── Content ────────────────────────────────────── */
+    .content {
+      flex: 1;
+      padding: 0 20px 40px;
+    }
+
+    /* ── Cards ──────────────────────────────────────── */
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 22px;
+    }
+    .card--elevated {
+      box-shadow: var(--shadow-md);
+      border-color: transparent;
+    }
+    .card--overlap { margin-top: -32px; }
+
+    /* ── Photo card ─────────────────────────────────── */
+    .photo-card {
+      border-radius: var(--r-card);
+      overflow: hidden;
+      height: 210px;
+      margin-bottom: 14px;
+    }
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+    }
+
+    /* ── Discount card ──────────────────────────────── */
+    .discount-card {
+      background: linear-gradient(135deg, #6C0FD8 0%, #4A0A9A 100%);
+      border-radius: var(--r-card);
+      padding: 20px 22px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .discount-badge {
+      background: rgba(255,255,255,.15);
+      border: 2px solid rgba(255,255,255,.3);
+      border-radius: 14px;
+      padding: 12px 16px;
+      text-align: center;
+      flex-shrink: 0;
+      min-width: 72px;
+    }
+    .discount-amount {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+    .discount-unit {
+      font-size: .6rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.65);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-top: 3px;
+    }
+    .discount-text strong {
+      display: block;
+      font-size: .97rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 5px;
+      line-height: 1.25;
+    }
+    .discount-text span {
+      font-size: .78rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.6);
+      line-height: 1.45;
+    }
+
+    /* ── Feature rows ───────────────────────────────── */
+    .feature { display: flex; align-items: flex-start; gap: 14px; padding: 15px 0; }
+    .feature + .feature { border-top: 1px solid var(--border-soft); }
+    .feature-icon {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--purple-soft-2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .feature-title {
+      font-size: .9rem; font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 3px;
+    }
+    .feature-desc {
+      font-size: .8rem; font-weight: 500;
+      color: var(--fg-secondary);
+      line-height: 1.4;
+    }
+
+    /* ── Eyebrow in cards ───────────────────────────── */
+    .card-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .68rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--fg-secondary);
+      margin-bottom: 12px;
+    }
+    .card-eyebrow::before {
+      content: "";
+      display: block;
+      width: 3px; height: 16px;
+      background: var(--green);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ── Form ───────────────────────────────────────── */
+    .form-title {
+      font-size: 1.15rem; font-weight: 800;
+      letter-spacing: -.02em;
+      color: var(--fg);
+      margin-bottom: 4px;
+    }
+    .form-sub {
+      font-size: .82rem; font-weight: 500;
+      color: var(--fg-secondary);
+      margin-bottom: 18px;
+      line-height: 1.4;
+    }
+
+    .input-group { margin-bottom: 10px; }
+    .input-label {
+      display: block;
+      font-size: .7rem; font-weight: 700;
+      color: var(--fg-secondary);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: 5px;
+    }
+    .input-field {
+      width: 100%; height: 44px;
+      background: var(--surface);
+      border: 2px solid transparent;
+      border-radius: var(--r-input);
+      padding: 0 14px;
+      font-family: inherit; font-size: .9rem;
+      color: var(--fg);
+      outline: none;
+      transition: border-color .15s, background .15s;
+    }
+    .input-field::placeholder { color: var(--fg-muted); }
+    .input-field:focus { background: #fff; border-color: var(--purple); }
+    .input-field.is-error { background: #fff; border-color: var(--destructive); }
+
+    .error-msg {
+      font-size: .72rem; font-weight: 500;
+      color: var(--destructive);
+      margin-bottom: 10px;
+      display: none;
+    }
+    .error-msg.visible { display: block; }
+
+    /* ── Button ─────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: inherit; font-weight: 700;
+      border-radius: var(--r-pill); border: none;
+      cursor: pointer; text-decoration: none;
+      white-space: nowrap;
+      transition: background .15s, box-shadow .15s, transform .12s;
+    }
+    .btn--primary {
+      background: var(--purple); color: #fff;
+      box-shadow: var(--shadow-cta);
+      font-size: .95rem; padding: 13px 24px;
+    }
+    .btn--primary:hover {
+      background: var(--purple-dark);
+      box-shadow: var(--shadow-cta-h);
+      transform: translateY(-1px);
+    }
+    .btn--primary:active { transform: scale(.98); }
+    .btn--primary:disabled { opacity: .55; cursor: not-allowed; transform: none; box-shadow: none; }
+    .btn--full { width: 100%; }
+
+    /* ── Trust ──────────────────────────────────────── */
+    .trust {
+      font-size: .75rem; font-weight: 500;
+      color: var(--fg-muted);
+      text-align: center; line-height: 1.5;
+      margin-top: 6px;
+    }
+
+    /* ── Success state ──────────────────────────────── */
+    .success { display: none; text-align: center; padding: 16px 0 8px; }
+    .success.visible { display: block; }
+    .success-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--green-bg);
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 10px;
+    }
+    .success-title { font-size: 1rem; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+    .success-sub { font-size: .82rem; font-weight: 500; color: var(--fg-secondary); }
+
+    /* ── Footer ─────────────────────────────────────── */
+    .footer {
+      padding: 20px; text-align: center;
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+    }
+    .footer a {
+      font-size: .72rem; color: var(--fg-muted);
+      text-decoration: none;
+    }
+    .footer a:hover { color: var(--fg-secondary); }
+    .footer span { color: var(--border); margin: 0 8px; }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <header class="hero">
+
+    <div class="logo-row">
+      <img src="logo-blanco.svg" alt="Shifty" class="logo">
+      <span class="logo-sep">×</span>
+      <div class="partner-badge">
+        <img src="logo-thefork.jpeg" alt="The Fork" class="partner-logo">
+      </div>
+    </div>
+
+    <div class="eyebrow">Plataforma de trabajo flexible nº1 en hostelería</div>
+
+    <h1 class="hero-title">
+      Personal cualificado,<br>cuando lo necesites.
+    </h1>
+    <p class="hero-sub">
+      Shifty es la extensión flexible de tu equipo — profesionales verificados que trabajan cuando y donde los necesitas.
+    </p>
+    <p class="hero-sub-2">
+      Publica tus turnos en minutos, elige quién trabaja contigo, repite con los que mejor funcionan y construye tu pool de confianza.
+    </p>
+
+  </header>
+
+  <!-- ── CONTENT ──────────────────────────────────────── -->
+  <main class="content">
+
+    <!-- Benefits card — overlaps hero -->
+    <div class="card card--elevated card--overlap" style="margin-bottom:14px">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
+            <path d="M1 4.5L4 7.5L10 1.5" stroke="#6C0FD8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="feature-title">Verificados con experiencia real</div>
+          <div class="feature-desc">Solo profesionales con historial probado en hostelería. Evaluados antes de entrar a la plataforma.</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
+            <path d="M1 4.5L4 7.5L10 1.5" stroke="#6C0FD8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="feature-title">Cobertura en menos de 24 horas</div>
+          <div class="feature-desc">Publica un turno hoy y cúbrelo mañana. Sin esperas, sin intermediarios.</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
+            <path d="M1 4.5L4 7.5L10 1.5" stroke="#6C0FD8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="feature-title">100% legal, sin gestión para ti</div>
+          <div class="feature-desc">Contratos, Seguridad Social y nóminas los gestiona nuestra ETT. Tú solo confirmas quién trabaja.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Photo -->
+    <div class="photo-card">
+      <img
+        src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=80"
+        alt="Restaurante con equipo profesional de hostelería"
+        loading="lazy"
+      >
+    </div>
+
+    <!-- Discount -->
+    <div class="discount-card">
+      <div class="discount-badge">
+        <div class="discount-amount">30€</div>
+        <div class="discount-unit">descuento</div>
+      </div>
+      <div class="discount-text">
+        <strong>Exclusivo para clientes de The Fork</strong>
+        <span>30 € de descuento en tu primera factura con Shifty, aplicados automáticamente al registrarte.</span>
+      </div>
+    </div>
+
+    <!-- Form card -->
+    <div class="card" style="margin-bottom:14px">
+      <div class="card-eyebrow">Empieza hoy</div>
+      <div class="form-title">Registra tu restaurante</div>
+      <p class="form-sub">En menos de 5 minutos ya puedes publicar tu primer turno</p>
+
+      <form id="lead-form">
+        <div class="input-group">
+          <label class="input-label" for="restaurant-name">Nombre del restaurante</label>
+          <input
+            type="text"
+            id="restaurant-name"
+            class="input-field"
+            placeholder="Ej. Restaurante La Mar"
+            autocomplete="organization"
+            required
+          >
+        </div>
+        <div class="input-group" style="margin-bottom:14px">
+          <label class="input-label" for="email">Email del responsable</label>
+          <input
+            type="email"
+            id="email"
+            class="input-field"
+            placeholder="nombre@restaurante.com"
+            autocomplete="email"
+            required
+          >
+        </div>
+        <div class="error-msg" id="error-msg">Revisa los datos e inténtalo de nuevo</div>
+        <button type="submit" id="submit-btn" class="btn btn--primary btn--full">
+          Empezar gratis →
+        </button>
+      </form>
+
+      <div class="success" id="success">
+        <div class="success-icon">
+          <svg width="18" height="15" viewBox="0 0 18 15" fill="none">
+            <path d="M1.5 7.5L6.5 12.5L16.5 2.5" stroke="#10B981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="success-title">Llevándote al panel de registro</div>
+        <div class="success-sub">Un momento...</div>
+      </div>
+    </div>
+
+    <!-- Trust -->
+    <p class="trust">
+      +500 restaurantes ya confían en Shifty<br>en Madrid y Barcelona
+    </p>
+
+  </main>
+
+</div>
+
+<!-- ── FOOTER ────────────────────────────────────────── -->
+<footer class="footer">
+  <a href="https://shifty.es/privacidad">Privacidad</a>
+  <span>·</span>
+  <a href="https://shifty.es">shifty.es</a>
+</footer>
+
+<script>
+  const SUPABASE_URL  = 'https://brgswggayexbvrnqtlhp.supabase.co';
+  const SUPABASE_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyZ3N3Z2dheWV4YnZybnF0bGhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIyNTg1MDUsImV4cCI6MjA3NzgzNDUwNX0.I9qwakt7xILD01QtoTk0-uKZI-uqpYXQwVCvIxw1iCo';
+  const SOURCE        = 'the-fork';
+  const REGISTER_URL  = 'https://portalweb.shifty.es/registro?utm_source=the-fork&utm_medium=partner&utm_campaign=thefork-alliance';
+
+  const { createClient } = supabase;
+  const db = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  const form      = document.getElementById('lead-form');
+  const nameEl    = document.getElementById('restaurant-name');
+  const emailEl   = document.getElementById('email');
+  const submitBtn = document.getElementById('submit-btn');
+  const errorMsg  = document.getElementById('error-msg');
+  const successEl = document.getElementById('success');
+
+  [nameEl, emailEl].forEach(el => {
+    el.addEventListener('input', () => {
+      el.classList.remove('is-error');
+      errorMsg.classList.remove('visible');
+    });
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name  = nameEl.value.trim();
+    const email = emailEl.value.trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if (!name || !emailOk) {
+      if (!name)    nameEl.classList.add('is-error');
+      if (!emailOk) emailEl.classList.add('is-error');
+      errorMsg.classList.add('visible');
+      return;
+    }
+
+    submitBtn.disabled    = true;
+    submitBtn.textContent = 'Guardando...';
+
+    try {
+      await db.from('recruitment_leads').insert({
+        source:        SOURCE,
+        source_detail: 'landing_page',
+        full_name:     name,
+        email:         email,
+        status:        'new'
+      });
+    } catch (_) { /* redirect regardless */ }
+
+    form.style.display = 'none';
+    successEl.classList.add('visible');
+    setTimeout(() => { window.location.href = REGISTER_URL; }, 1500);
+  });
+</script>
+
+</body>
+</html>
