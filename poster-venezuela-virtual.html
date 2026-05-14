@@ -13,6 +13,14 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    @page { size: A4 portrait; margin: 0; }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      html, body { width: 210mm; height: 297mm; margin: 0; padding: 0; background: none; overflow: hidden; }
+      .hint { display: none; }
+      .poster { width: 210mm; height: 297mm; border-radius: 0; box-shadow: none; page-break-inside: avoid; break-inside: avoid; }
+    }
+
     body {
       font-family: "Onest", system-ui, sans-serif;
       background: #1a1a2e;
@@ -210,12 +218,12 @@
     <div class="cta-row">
       <div>
         <div class="cta-label">Descarga la app en</div>
-        <div class="cta-url">join.shifty.es/venezuela-virtual</div>
+        <div class="cta-url">shifty.es/trabaja/venezuela-virtual</div>
       </div>
       <div class="qr-wrap">
         <img
-          src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://join.shifty.es/venezuela-virtual&color=111118&bgcolor=ffffff&qzone=1"
-          alt="QR join.shifty.es/venezuela-virtual"
+          src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://shifty.es/trabaja/venezuela-virtual&color=111118&bgcolor=ffffff&qzone=1"
+          alt="QR shifty.es/trabaja/venezuela-virtual"
         >
       </div>
     </div>
