@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fotos para poster — TheFork</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #0f0f14; color: #fff; padding: 40px 32px; }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; }
+    .sub { font-size: .85rem; color: rgba(255,255,255,.45); margin-bottom: 36px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 48px; }
+    .card { border-radius: 12px; overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: border-color .15s, transform .15s; background: #1a1a2e; }
+    .card:hover { border-color: #6C0FD8; transform: translateY(-2px); }
+    .card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; display: block; }
+    .card-body { padding: 10px 12px 14px; }
+    .card-id { font-size: .75rem; font-weight: 700; color: #6C0FD8; font-family: monospace; margin-bottom: 4px; }
+    .card-desc { font-size: .78rem; color: rgba(255,255,255,.65); line-height: 1.4; }
+    .section-label { font-size: .72rem; font-weight: 700; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .section-label::before { content: ""; display: block; width: 3px; height: 14px; border-radius: 2px; background: #6C0FD8; }
+  </style>
+</head>
+<body>
+
+<h1>Camareros y cocineros en servicio — poster TheFork</h1>
+<p class="sub">Ratio A4 (3:4) — lo que ves es lo que sale en el poster. Dile a Claude: "usa la foto P-X"</p>
+
+<div class="section-label">Camareros en servicio</div>
+<div class="grid">
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1775827444941-fb04b3bc2f52?auto=format&fit=crop&w=400&h=533&q=85" alt="">
+    <div class="card-body"><div class="card-id">P-1</div><div class="card-desc">Camarero sirviendo en restaurante, luz cálida</div></div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1762528458911-c528fe843167?auto=format&fit=crop&w=400&h=533&q=85" alt="">
+    <div class="card-body"><div class="card-id">P-2</div><div class="card-desc">Camarero con bandeja de bebidas</div></div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1772864462605-529fcae85a53?auto=format&fit=crop&w=400&h=533&q=85" alt="">
+    <div class="card-body"><div class="card-id">P-3</div><div class="card-desc">Camarero sirviendo terraza europea exterior</div></div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1745930743491-799ff8538cf1?auto=format&fit=crop&w=400&h=533&q=85" alt="">
+    <div class="card-body"><div class="card-id">P-4</div><div class="card-desc">Camarera con bandeja de vasos y botella</div></div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1776977507261-81e4ab0dd806?auto=format&fit=crop&w=400&h=533&q=85" alt="">
+    <div class="card-body"><div class="card-id">P-5</div><div class="card-desc">Camarera sirviendo en terraza soleada junto al agua</div></div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1776603174157-bf286ef86149?auto=format&fit=crop&w=400&h=533&q=85" alt="">
+    <div class="card-body"><div class="card-id">P-6</div><div class="card-desc">Camarero con bandeja de botellas en servicio</div></div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1719573019827-d06944a0c2be?auto=format&fit=crop&w=400&h=533&q=85" alt="">
+    <div class="card-body"><div class="card-id">P-7</div><div class="card-desc">Camarero de esmoquin llevando bandeja, servicio formal</div></div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1648454021550-6a56ccbedb6f?auto=format&fit=crop&w=400&h=533&q=85" alt="">
+    <div class="card-body"><div class="card-id">P-8</div><div class="card-desc">Camarero con delantal llevando dos platos</div></div>
+  </div>
+
+</div>
+
+<div class="section-label">Cocineros y brigada de cocina</div>
+<div class="grid">
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1763846403168-b7bfd877dda6?auto=format&fit=crop&w=400&h=533&q=85" alt="">
+    <div class="card-body"><div class="card-id">P-9</div><div class="card-desc">Chef con delantal sosteniendo platos, actitud segura</div></div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&h=533&q=85" alt="">
+    <div class="card-body"><div class="card-id">P-10</div><div class="card-desc">Chef en cocina profesional, brigada al fondo</div></div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1454117096252-6a032e90e540?auto=format&fit=crop&w=400&h=533&q=85" alt="">
+    <div class="card-body"><div class="card-id">P-11</div><div class="card-desc">Equipo de cocina trabajando juntos, energía alta</div></div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?auto=format&fit=crop&w=400&h=533&q=85" alt="">
+    <div class="card-body"><div class="card-id">P-12</div><div class="card-desc">Chef emplatando con precisión, cocina de autor</div></div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=400&h=533&q=85" alt="">
+    <div class="card-body"><div class="card-id">P-13</div><div class="card-desc">Chef sonriendo en cocina, ambiente positivo</div></div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1581349485608-9469926a8e5e?auto=format&fit=crop&w=400&h=533&q=85" alt="">
+    <div class="card-body"><div class="card-id">P-14</div><div class="card-desc">Cocinero en servicio activo, plato en mano</div></div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1607631568010-a87245c0daf1?auto=format&fit=crop&w=400&h=533&q=85" alt="">
+    <div class="card-body"><div class="card-id">P-15</div><div class="card-desc">Chef con uniforme blanco, cocina profesional</div></div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=400&h=533&q=85" alt="">
+    <div class="card-body"><div class="card-id">P-16</div><div class="card-desc">Chef preparando plato, foco y detalle</div></div>
+  </div>
+
+</div>
+
+<p style="font-size:.75rem;color:rgba(255,255,255,.25)">Unsplash — licencia gratuita, uso comercial permitido.</p>
+</body>
+</html>

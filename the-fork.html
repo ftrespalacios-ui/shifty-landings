@@ -83,14 +83,14 @@
       line-height: 1;
       flex-shrink: 0;
     }
-    .partner-badge {
-      background: #fff;
-      border-radius: 10px;
-      padding: 8px 12px;
-      display: flex;
-      align-items: center;
+    .partner-logo {
+      height: 83px;
+      width: auto;
+      display: block;
+      flex-shrink: 0;
+      filter: brightness(0) invert(1);
+      margin-left: -12px;
     }
-    .partner-logo { height: 28px; width: auto; display: block; }
 
     .eyebrow {
       display: inline-flex;
@@ -271,6 +271,16 @@
       line-height: 1.4;
     }
 
+    .input-row { display: flex; gap: 8px; }
+    .input-prefix {
+      display: flex; align-items: center;
+      background: var(--surface);
+      border: 2px solid transparent;
+      border-radius: var(--r-input);
+      padding: 0 12px; height: 44px;
+      font-family: inherit; font-size: .9rem; font-weight: 600;
+      color: var(--fg); white-space: nowrap; flex-shrink: 0;
+    }
     .input-group { margin-bottom: 10px; }
     .input-label {
       display: block;
@@ -326,6 +336,25 @@
     .btn--primary:disabled { opacity: .55; cursor: not-allowed; transform: none; box-shadow: none; }
     .btn--full { width: 100%; }
 
+    /* ── Position pills ─────────────────────────────── */
+    .positions-card { margin-bottom: 14px; }
+    .positions-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--fg-secondary);
+      margin-bottom: 10px;
+    }
+    .positions-grid {
+      display: flex; flex-wrap: wrap; gap: 7px;
+    }
+    .position-pill {
+      background: var(--purple-soft);
+      border: 1px solid var(--purple-soft-2);
+      border-radius: var(--r-pill);
+      padding: 5px 13px;
+      font-size: .78rem; font-weight: 600;
+      color: var(--purple);
+    }
+
     /* ── Trust ──────────────────────────────────────── */
     .trust {
       font-size: .75rem; font-weight: 500;
@@ -370,9 +399,7 @@
     <div class="logo-row">
       <img src="logo-blanco.svg" alt="Shifty" class="logo">
       <span class="logo-sep">×</span>
-      <div class="partner-badge">
-        <img src="logo-thefork.jpeg" alt="The Fork" class="partner-logo">
-      </div>
+      <img src="logo-thefork.svg" alt="TheFork" class="partner-logo">
     </div>
 
     <div class="eyebrow">Plataforma de trabajo flexible nº1 en hostelería</div>
@@ -381,10 +408,7 @@
       Personal cualificado,<br>cuando lo necesites.
     </h1>
     <p class="hero-sub">
-      Shifty es la extensión flexible de tu equipo — profesionales verificados que trabajan cuando y donde los necesitas.
-    </p>
-    <p class="hero-sub-2">
-      Publica tus turnos en minutos, elige quién trabaja contigo, repite con los que mejor funcionan y construye tu pool de confianza.
+      La extensión flexible de tu equipo — profesionales verificados que trabajan cuando y donde los necesitas.
     </p>
 
   </header>
@@ -402,7 +426,7 @@
         </div>
         <div>
           <div class="feature-title">Verificados con experiencia real</div>
-          <div class="feature-desc">Solo profesionales con historial probado en hostelería. Evaluados antes de entrar a la plataforma.</div>
+          <div class="feature-desc">Historial probado en hostelería, evaluados antes de entrar. <span style="color:#6C0FD8;font-weight:700;">★ 4.8</span> <span style="color:var(--fg-muted)">valoración media de nuestros profesionales.</span></div>
         </div>
       </div>
       <div class="feature">
@@ -413,7 +437,7 @@
         </div>
         <div>
           <div class="feature-title">Cobertura en menos de 24 horas</div>
-          <div class="feature-desc">Publica un turno hoy y cúbrelo mañana. Sin esperas, sin intermediarios.</div>
+          <div class="feature-desc">Publica hoy, cubre mañana. Sin esperas ni intermediarios.</div>
         </div>
       </div>
       <div class="feature">
@@ -423,16 +447,32 @@
           </svg>
         </div>
         <div>
-          <div class="feature-title">100% legal, sin gestión para ti</div>
-          <div class="feature-desc">Contratos, Seguridad Social y nóminas los gestiona nuestra ETT. Tú solo confirmas quién trabaja.</div>
+          <div class="feature-title">Construye tu equipo de confianza</div>
+          <div class="feature-desc">Repite con los que mejor funcionan. Guarda tus favoritos y tenlos disponibles siempre.</div>
         </div>
+      </div>
+    </div>
+
+    <!-- Positions -->
+    <div class="card positions-card">
+      <div class="positions-label">Posiciones que cubrimos</div>
+      <div class="positions-grid">
+        <span class="position-pill">Camarero/a</span>
+        <span class="position-pill">Cocinero/a</span>
+        <span class="position-pill">Bartender</span>
+        <span class="position-pill">Ayudante de cocina</span>
+        <span class="position-pill">Hostess</span>
+        <span class="position-pill">Office</span>
+        <span class="position-pill">Chef de partida</span>
+        <span class="position-pill">Runner</span>
+        <span class="position-pill" style="color:var(--fg-muted);background:var(--surface);border-color:var(--border)">y más...</span>
       </div>
     </div>
 
     <!-- Photo -->
     <div class="photo-card">
       <img
-        src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=80"
+        src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=900&q=80"
         alt="Restaurante con equipo profesional de hostelería"
         loading="lazy"
       >
@@ -441,12 +481,12 @@
     <!-- Discount -->
     <div class="discount-card">
       <div class="discount-badge">
-        <div class="discount-amount">30€</div>
+        <div class="discount-amount">50€</div>
         <div class="discount-unit">descuento</div>
       </div>
       <div class="discount-text">
         <strong>Exclusivo para clientes de The Fork</strong>
-        <span>30 € de descuento en tu primera factura con Shifty, aplicados automáticamente al registrarte.</span>
+        <span>50 € de descuento sobre la comisión de Shifty en el marketplace, válido en tu primer mes.</span>
       </div>
     </div>
 
@@ -469,15 +509,20 @@
           >
         </div>
         <div class="input-group" style="margin-bottom:14px">
-          <label class="input-label" for="email">Email del responsable</label>
-          <input
-            type="email"
-            id="email"
-            class="input-field"
-            placeholder="nombre@restaurante.com"
-            autocomplete="email"
-            required
-          >
+          <label class="input-label" for="phone">Teléfono del responsable</label>
+          <div class="input-row">
+            <div class="input-prefix">+34</div>
+            <input
+              type="tel"
+              id="phone"
+              class="input-field"
+              placeholder="612 345 678"
+              inputmode="numeric"
+              autocomplete="tel-national"
+              maxlength="12"
+              required
+            >
+          </div>
         </div>
         <div class="error-msg" id="error-msg">Revisa los datos e inténtalo de nuevo</div>
         <button type="submit" id="submit-btn" class="btn btn--primary btn--full">
@@ -523,12 +568,12 @@
 
   const form      = document.getElementById('lead-form');
   const nameEl    = document.getElementById('restaurant-name');
-  const emailEl   = document.getElementById('email');
+  const phoneEl   = document.getElementById('phone');
   const submitBtn = document.getElementById('submit-btn');
   const errorMsg  = document.getElementById('error-msg');
   const successEl = document.getElementById('success');
 
-  [nameEl, emailEl].forEach(el => {
+  [nameEl, phoneEl].forEach(el => {
     el.addEventListener('input', () => {
       el.classList.remove('is-error');
       errorMsg.classList.remove('visible');
@@ -538,13 +583,12 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const name  = nameEl.value.trim();
-    const email = emailEl.value.trim();
-    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const name   = nameEl.value.trim();
+    const digits = phoneEl.value.replace(/\D/g, '');
 
-    if (!name || !emailOk) {
-      if (!name)    nameEl.classList.add('is-error');
-      if (!emailOk) emailEl.classList.add('is-error');
+    if (!name || digits.length < 9) {
+      if (!name)          nameEl.classList.add('is-error');
+      if (digits.length < 9) phoneEl.classList.add('is-error');
       errorMsg.classList.add('visible');
       return;
     }
@@ -552,12 +596,14 @@
     submitBtn.disabled    = true;
     submitBtn.textContent = 'Guardando...';
 
+    const phone = '+34' + digits;
+
     try {
       await db.from('recruitment_leads').insert({
         source:        SOURCE,
         source_detail: 'landing_page',
         full_name:     name,
-        email:         email,
+        phone:         phone,
         status:        'new'
       });
     } catch (_) { /* redirect regardless */ }

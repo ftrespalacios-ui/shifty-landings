@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de imágenes — The Fork landing</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0f0f14;
+      color: #fff;
+      padding: 40px 32px;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; }
+    .sub { font-size: .85rem; color: rgba(255,255,255,.45); margin-bottom: 36px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .card {
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color .15s, transform .15s;
+      background: #1a1a2e;
+    }
+    .card:hover { border-color: #6C0FD8; transform: translateY(-2px); }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+    .card-body { padding: 10px 12px 12px; }
+    .card-id {
+      font-size: .72rem; font-weight: 700;
+      color: #6C0FD8;
+      font-family: monospace;
+      margin-bottom: 4px;
+      letter-spacing: .04em;
+    }
+    .card-desc { font-size: .78rem; color: rgba(255,255,255,.65); line-height: 1.4; }
+
+    .section-label {
+      font-size: .72rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.5);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label::before {
+      content: "";
+      display: block;
+      width: 3px; height: 14px;
+      border-radius: 2px;
+    }
+    .section-label.purple::before { background: #6C0FD8; }
+    .section-label.green::before  { background: #10B981; }
+    .section-label.gold::before   { background: #F59E0B; }
+
+    .footer-note {
+      font-size: .75rem;
+      color: rgba(255,255,255,.25);
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Catálogo de imágenes — The Fork × Shifty</h1>
+<p class="sub">Dile a Claude: "usa la foto X" — la aplica en the-fork.html y abre el preview</p>
+
+<!-- ── SECCIÓN 1: RESTAURANTE EN OPERACIÓN ─────────── -->
+<div class="section-label purple">Restaurante en operación — ambiente y sala</div>
+
+<div class="grid">
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-1 (actual)</div>
+      <div class="card-desc">Interior restaurante elegante, luz cálida, mesas puestas</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-2</div>
+      <div class="card-desc">Restaurante lleno, ambiente animado, techo con luces</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-3</div>
+      <div class="card-desc">Restaurante con velas, íntimo, servicio en sala</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-4</div>
+      <div class="card-desc">Restaurante con clientes y personal, hora punta</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-5</div>
+      <div class="card-desc">Bar de restaurante, atmósfera nocturna, luces bajas</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-6</div>
+      <div class="card-desc">Restaurante vacío bien montado, interior moderno</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-7</div>
+      <div class="card-desc">Restaurante moderno minimalista, luz natural</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-8</div>
+      <div class="card-desc">Camarero sirviendo en mesa, restaurante de lujo</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── SECCIÓN 2: EQUIPO DE PERSONAL PROFESIONAL ─── -->
+<div class="section-label green">Equipo de hostelería — personal profesional trabajando</div>
+
+<div class="grid">
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1560053608-13721e0d5264?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-9</div>
+      <div class="card-desc">Equipo de restaurante posando juntos, uniforme oscuro</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-10</div>
+      <div class="card-desc">Equipo de cocina y sala trabajando en coordinación</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1533777324565-a040eb52facd?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-11</div>
+      <div class="card-desc">Servicio de mesa elegante, camarero y cliente</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1454117096252-6a032e90e540?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-12</div>
+      <div class="card-desc">Equipo de cocina en acción, trabajo en equipo</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1579353804837-769364c0500e?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-13</div>
+      <div class="card-desc">Chef y camarero coordinando en restaurante</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-14</div>
+      <div class="card-desc">Chef en cocina profesional, brigada al fondo</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-15</div>
+      <div class="card-desc">Camarero profesional con bandeja, restaurante de fondo</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1576867757603-05b134ebc379?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-16</div>
+      <div class="card-desc">Dos camareros preparando la sala antes del servicio</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── SECCIÓN 3: SERVICIO PREMIUM / THE FORK STYLE ─ -->
+<div class="section-label gold">Servicio premium — estética The Fork, fine dining</div>
+
+<div class="grid">
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-17</div>
+      <div class="card-desc">Plato premium servido en mesa, estética fine dining</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1550966871-3ed3cbe818b2?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-18</div>
+      <div class="card-desc">Restaurante con clientes, servicio en hora punta</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-19</div>
+      <div class="card-desc">Terraza restaurante animada, equipo en servicio</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=500&h=200&q=80&sat=-30&bri=10" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-20</div>
+      <div class="card-desc">Interior restaurante — vista diferente, más fría</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1592861956120-e524fc739696?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-21</div>
+      <div class="card-desc">Restaurante moderno, equipo joven, ambiente urbano</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1662209573987-cf8a4e05d3d3?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-22</div>
+      <div class="card-desc">Mesa preparada con detalles, restaurante premium</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1428515985580-4a049aec7d87?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-23</div>
+      <div class="card-desc">Restaurante clásico, camarero, atmósfera europea</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=500&h=200&q=80" alt="">
+    <div class="card-body">
+      <div class="card-id">foto-24</div>
+      <div class="card-desc">Vista aérea mesa con platos, servicio en restaurante</div>
+    </div>
+  </div>
+
+</div>
+
+<p class="footer-note">Todas las fotos son de Unsplash — licencia gratuita, uso comercial permitido.</p>
+
+</body>
+</html>
