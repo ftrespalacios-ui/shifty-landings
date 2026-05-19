@@ -498,6 +498,17 @@
 
       <form id="lead-form">
         <div class="input-group">
+          <label class="input-label" for="contact-name">Nombre de contacto</label>
+          <input
+            type="text"
+            id="contact-name"
+            class="input-field"
+            placeholder="Ej. María García"
+            autocomplete="name"
+            required
+          >
+        </div>
+        <div class="input-group">
           <label class="input-label" for="restaurant-name">Nombre del restaurante</label>
           <input
             type="text"
@@ -566,14 +577,15 @@
   const { createClient } = supabase;
   const db = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  const form      = document.getElementById('lead-form');
-  const nameEl    = document.getElementById('restaurant-name');
-  const phoneEl   = document.getElementById('phone');
-  const submitBtn = document.getElementById('submit-btn');
-  const errorMsg  = document.getElementById('error-msg');
-  const successEl = document.getElementById('success');
+  const form        = document.getElementById('lead-form');
+  const contactEl   = document.getElementById('contact-name');
+  const nameEl      = document.getElementById('restaurant-name');
+  const phoneEl     = document.getElementById('phone');
+  const submitBtn   = document.getElementById('submit-btn');
+  const errorMsg    = document.getElementById('error-msg');
+  const successEl   = document.getElementById('success');
 
-  [nameEl, phoneEl].forEach(el => {
+  [contactEl, nameEl, phoneEl].forEach(el => {
     el.addEventListener('input', () => {
       el.classList.remove('is-error');
       errorMsg.classList.remove('visible');
@@ -583,11 +595,13 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const name   = nameEl.value.trim();
-    const digits = phoneEl.value.replace(/\D/g, '');
+    const contact = contactEl.value.trim();
+    const name    = nameEl.value.trim();
+    const digits  = phoneEl.value.replace(/\D/g, '');
 
-    if (!name || digits.length < 9) {
-      if (!name)          nameEl.classList.add('is-error');
+    if (!contact || !name || digits.length < 9) {
+      if (!contact)           contactEl.classList.add('is-error');
+      if (!name)              nameEl.classList.add('is-error');
       if (digits.length < 9) phoneEl.classList.add('is-error');
       errorMsg.classList.add('visible');
       return;
@@ -602,7 +616,8 @@
       await db.from('recruitment_leads').insert({
         source:        SOURCE,
         source_detail: 'landing_page',
-        full_name:     name,
+        full_name:     contact,
+        notes:         name,
         phone:         phone,
         status:        'new'
       });
